@@ -1,5 +1,4 @@
 const events = [];
-const tasks = [];
 
 document.getElementById('eventForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -51,6 +50,9 @@ function notifyUser(event) {
     }
 }
 
+// Task Manager
+const tasks = [];
+
 document.getElementById('addTaskButton').addEventListener('click', function() {
     const taskInput = document.getElementById('taskInput');
     const task = taskInput.value.trim();
@@ -68,7 +70,32 @@ function displayTasks() {
 
     tasks.forEach(task => {
         const listItem = document.createElement('li');
-        listItem.textContent = task;
+        listItem.innerHTML = `
+            <div class="handle"></div>
+            ${task}
+        `;
         taskList.appendChild(listItem);
     });
+
+    // Initialize sortable after adding tasks
+    Sortable.create(taskList, {
+        animation: 150,
+        handle: '.handle', // Use the handle class for dragging
+        onEnd: function(evt) {
+            const movedTask = tasks.splice(evt.oldIndex, 1)[0];
+            tasks.splice(evt.newIndex, 0, movedTask);
+            displayTasks(); // Re-render tasks to reflect changes
+        }
+    });
 }
+
+// Navigation
+document.getElementById('showEvents').addEventListener('click', function() {
+    document.getElementById('eventOrganizer').style.display = 'block';
+    document.getElementById('taskManager').style.display = 'none';
+});
+
+document.getElementById('showTasks').addEventListener('click', function() {
+    document.getElementById('eventOrganizer').style.display = 'none';
+    document.getElementById('taskManager').style.display = 'block';
+});

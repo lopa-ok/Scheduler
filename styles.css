@@ -10,15 +10,37 @@ h1 {
     color: #333;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+nav {
+    text-align: center;
+    margin: 20px;
+}
+
+button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.section {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 input, textarea, button {
@@ -33,20 +55,8 @@ textarea {
     height: 100px;
 }
 
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 #eventsContainer, #taskListContainer {
-    max-width: 600px;
-    margin: 20px auto;
+    margin-top: 20px;
 }
 
 #eventsList, #taskList {
@@ -61,3 +71,41 @@ button:hover {
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
+
+.sortable-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sortable-list li {
+    background: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: move;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sortable-list li .handle {
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    cursor: move;
+}
+
+.sortable-list li .handle::before {
+    content: '⋮';
+    font-size: 18px;
+    color: #000;
+}
+
